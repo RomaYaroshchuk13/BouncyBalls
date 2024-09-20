@@ -1,12 +1,12 @@
-﻿using Assets.Patterns.Scripts.ServiceLocator;
+﻿using Assets.BouncyBalls.Scripts.PatternServiceLocator;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace SignalBus
-{
-    public class EventBus : IService
+namespace Assets.BouncyBalls.Scripts.PatternSignalBus 
+{ 
+    public class SignalBus : IService
     {
         private Dictionary<string, List<CallbackWithPriority>> _signalCallbacks = new Dictionary<string, List<CallbackWithPriority>>();
 

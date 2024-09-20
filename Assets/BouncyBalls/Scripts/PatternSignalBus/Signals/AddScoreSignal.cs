@@ -1,4 +1,4 @@
-﻿namespace SignalBus.Signals
+﻿namespace Assets.BouncyBalls.Scripts.PatternSignalBus.Signals
 {
     /// <summary>
     /// Сигнал о прибавлении счёта в игре

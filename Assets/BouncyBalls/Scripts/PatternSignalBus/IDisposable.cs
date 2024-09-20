@@ -1,4 +1,4 @@
-﻿namespace SignalBus
+﻿namespace Assets.BouncyBalls.Scripts.PatternSignalBus
 {
     /// <summary>
     /// Интерфейс для отписки от сигнальной шины

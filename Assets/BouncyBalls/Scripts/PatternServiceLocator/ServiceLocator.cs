@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Assets.Patterns.Scripts.ServiceLocator
+namespace Assets.BouncyBalls.Scripts.PatternServiceLocator
 {
     public class ServiceLocator
     {
