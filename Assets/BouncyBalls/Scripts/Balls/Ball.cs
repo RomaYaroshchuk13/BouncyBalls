@@ -10,10 +10,10 @@ namespace Assets.BouncyBalls.Scripts.Balls
     public abstract class Ball : MonoBehaviour
     {
         private Image _sprite;
-        private float _health;
+        private int _health;
         protected SignalBus _signalBus;
 
-        public void Init(Sprite sprite, float health)
+        public void Init(Sprite sprite, int health)
         {
             _sprite.sprite = sprite;
             _health = health;   

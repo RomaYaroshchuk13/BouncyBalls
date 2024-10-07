@@ -10,24 +10,23 @@ public class GameController : IService, IDisposable
     public void Init()
     {
         _signalBus = ServiceLocator.Current.Get<SignalBus>();
-        _signalBus.Subscribe<LevelFinishedSignal>(LevelFinished);
-        //_eventBus.Subscribe<SetLevelSignal>(StartGame, -1);
+        _signalBus.Subscribe<ScreenplayFinishedSignal>(ScreenplayFinished);
+        _signalBus.Subscribe<SetScreenplaySignal>(StartGame, -1);
     }
 
-    public void StartGame()
+    private void StartGame(SetScreenplaySignal signal)
     {
         _signalBus.Invoke(new GameStartedSignal());
-
     }
 
-    public void StopGame()  
+    private void StopGame()  
     {
         _signalBus.Invoke(new GameStopSignal());
     }
 
-    private void LevelFinished(LevelFinishedSignal signal)
+    private void ScreenplayFinished(ScreenplayFinishedSignal signal)
     {
-        var level = signal.LevelData;
+        var level = signal.ScreenplayData;
 
         StopGame();
 
