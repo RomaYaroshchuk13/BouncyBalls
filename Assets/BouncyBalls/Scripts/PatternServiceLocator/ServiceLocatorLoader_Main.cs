@@ -58,6 +58,7 @@ namespace Assets.BouncyBalls.Scripts.PatternServiceLocator
             ServiceLocator.Current.Register(_sectorsCreator);
             ServiceLocator.Current.Register(_ballsCreator);
             ServiceLocator.Current.Register(_UICreator);
+            ServiceLocator.Current.Register(_storage);
         }
 
         private void Init()

@@ -13,8 +13,8 @@ namespace Assets.BouncyBalls.Scripts.Controllers
         BallsCreator _ballsCreator;
         SectorsCreator _sectorCreator;
         UICreator _UICreator;
-        IScreenplay _screenplay;
         ScreenplayData _screenplayData;
+        IScreenplay _screenplay;
 
         public void Init(ScreenplayData screenplayData)
         {

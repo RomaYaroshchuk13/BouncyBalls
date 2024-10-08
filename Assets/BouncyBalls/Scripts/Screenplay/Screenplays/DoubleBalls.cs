@@ -1,7 +1,6 @@
 ﻿using Assets.BouncyBalls.Scripts.Balls;
 using Assets.BouncyBalls.Scripts.Sectors;
 using DG.Tweening;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Assets.BouncyBalls.Scripts.Screenplay.Screenplays
@@ -17,17 +16,19 @@ namespace Assets.BouncyBalls.Scripts.Screenplay.Screenplays
         {
             _ballsCreator = ballsCreator;
             _sectorsCreator = sectorsCreator;
+            _screenplayData = screenplayData;
         }
 
         public override void Play()
         {
-            CreateBall();
             CreatePlayZone();
+            CreateBall();
         }
 
         private void CreateBall()
         {
-
+            BallModel model = new BallModel(_screenplayData.BallType);
+            Ball ball = _ballsCreator.CreateBall(model);
         }
 
         private void CreatePlayZone()
