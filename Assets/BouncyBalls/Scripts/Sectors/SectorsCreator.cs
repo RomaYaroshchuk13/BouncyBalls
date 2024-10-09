@@ -1,8 +1,8 @@
 ﻿using Assets.BouncyBalls.Scripts.PatternServiceLocator;
+using Assets.BouncyBalls.Scripts.Sectors.Figures;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using static Assets.BouncyBalls.Scripts.Sectors.Sector;
 
 namespace Assets.BouncyBalls.Scripts.Sectors
 {
@@ -12,13 +12,14 @@ namespace Assets.BouncyBalls.Scripts.Sectors
         private const float CONVERSION_FACTOR = PI/180F;
 
         [SerializeField] private Sector sectorPrefab;
-        [SerializeField] private Figure figurePrefab;
+        [SerializeField] private Circle _circlePrefab;
+        [SerializeField] private Square _squarePrefab;
         [SerializeField] private Transform figureContainer;
 
         public Figure CreateCirle(float radius, List<int> removingSectors = null, float sectorCount = 32f, float sectorHight = 10f)
         {
-            Figure figure = Instantiate(figurePrefab, figureContainer);
-            figure.name = "Circle";
+            Circle circle = Instantiate(_circlePrefab, figureContainer);
+            circle.Init(radius);
 
             float circuit = 2 * PI * radius;
             float sectorWidth = circuit / sectorCount; 
@@ -41,19 +42,21 @@ namespace Assets.BouncyBalls.Scripts.Sectors
 
                 SectorModel model = new(sectorPosition, sectorRotation, sectorSize);
 
-                Sector sector = Instantiate(sectorPrefab, figure.transform);
+                Sector sector = Instantiate(sectorPrefab, circle.transform);
                 sector.Init(model);
-                figure.sectors.Add(sector);
+                circle.sectors.Add(sector);
             }
 
-            return figure;
+            return circle;
         }
+
         public Figure CreateSquare(float radius, float sectorHight = 10f)
         {
-            Figure figure = Instantiate(figurePrefab, figureContainer);
-            figure.name = "Square";
+            Square square = Instantiate(_squarePrefab, figureContainer);
+            float sectorWidth = radius * 2;
+            square.Init(new(sectorWidth, sectorWidth));
 
-            Vector3 sectorSize = new(sectorHight, radius*2);
+            Vector3 sectorSize = new(sectorHight, sectorWidth);
             float sectorDegrees = 90;
             float modifyRadius = radius - (sectorHight*0.5f);
 
@@ -67,12 +70,12 @@ namespace Assets.BouncyBalls.Scripts.Sectors
                 Vector3 sectorRotation = new(0, 0, sectorDegrees * (i));
 
                 SectorModel model = new(sectorPosition, sectorRotation, sectorSize);
-                Sector sector = Instantiate(sectorPrefab, figure.transform);
+                Sector sector = Instantiate(sectorPrefab, square.transform);
                 sector.Init(model);
-                figure.sectors.Add(sector);
+                square.sectors.Add(sector);
             }
 
-            return figure;
+            return square;
         }
 }
 }

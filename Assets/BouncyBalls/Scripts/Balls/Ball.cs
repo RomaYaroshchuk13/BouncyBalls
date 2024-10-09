@@ -9,31 +9,34 @@ namespace Assets.BouncyBalls.Scripts.Balls
     [RequireComponent(typeof(CircleCollider2D))]
     public abstract class Ball : MonoBehaviour
     {
-        private Image _sprite;
-        private int _health;
         protected SignalBus _signalBus;
 
-        public void Init(Sprite sprite, int health)
+        public void Init()
         {
-            _sprite.sprite = sprite;
-            _health = health;   
-
             _signalBus = ServiceLocator.Current.Get<SignalBus>();
         }
+
         protected abstract void Interact();
 
-        private void OnTriggerEnter2D(Collider2D col)
+        private void OnCollisionEnter2D(Collision2D collision)
         {
-            if (col.gameObject.tag.Equals("Sector"))
+            if (collision.gameObject.tag.Equals("Sector"))
             {
                 Interact();
+            }
+        }
+
+        private void OnTriggerExit2D(Collider2D collision)
+        {
+            if (collision.gameObject.tag.Equals("Figure"))
+            {
                 Dispose();
             }
         }
 
         private void Dispose()
         {
-
+            _signalBus.Invoke(new DisposeBallSignal(this));
         }
     }
 }

@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: ScreenplayConfig
   m_EditorClassIdentifier: 
   _screenplays:
+  - _title: How many strikes are made in 60 second?
+    _ballType: 1
+    _ballColorType: 3
+    _ballTailType: 0
+    _screenplay: {fileID: 11400000, guid: a18f6b3fc243f804697e8ff79a12daaa, type: 2}
   - _title: HOW MANNY ELIPHANS 1 2 3
     _ballType: 1
-    _sectorType: 0
+    _ballColorType: 0
+    _ballTailType: 0
     _screenplay: {fileID: 11400000, guid: a18f6b3fc243f804697e8ff79a12daaa, type: 2}
-    _ballData: {fileID: 0}
-  - _title: HOW MANNY ELIPHANS 1 2 3
-    _ballType: 1
-    _sectorType: 0
-    _screenplay: {fileID: 11400000, guid: a18f6b3fc243f804697e8ff79a12daaa, type: 2}
-    _ballData: {fileID: 0}

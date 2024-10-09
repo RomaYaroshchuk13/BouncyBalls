@@ -10,8 +10,6 @@ namespace Assets.BouncyBalls.Scripts.Controllers
     public class ScreenplayController : IService
     {
         SignalBus _signalBus;
-        BallsCreator _ballsCreator;
-        SectorsCreator _sectorCreator;
         UICreator _UICreator;
         ScreenplayData _screenplayData;
         IScreenplay _screenplay;
@@ -19,8 +17,6 @@ namespace Assets.BouncyBalls.Scripts.Controllers
         public void Init(ScreenplayData screenplayData)
         {
             _signalBus = ServiceLocator.Current.Get<SignalBus>();
-            _ballsCreator = ServiceLocator.Current.Get<BallsCreator>();
-            _sectorCreator = ServiceLocator.Current.Get<SectorsCreator>();
             _UICreator = ServiceLocator.Current.Get<UICreator>();
 
             _screenplay = screenplayData.Screenplay;
@@ -33,7 +29,7 @@ namespace Assets.BouncyBalls.Scripts.Controllers
         private void Play(GameStartedSignal signal)
         {
             _UICreator.SetTitle(_screenplayData.Title);
-            _screenplay.Init(_ballsCreator, _sectorCreator, _screenplayData);
+            _screenplay.Init(_screenplayData);
             _screenplay.Play();
         }
     }

@@ -13,6 +13,7 @@ namespace Assets.BouncyBalls.Scripts.Balls
             Storage storage = ServiceLocator.Current.Get<Storage>();
             Ball ballPrefab = storage.GetBallPrefab(model.Type);
             Ball ball = Instantiate(ballPrefab, _ballsContainer);
+            ball.Init();
 
             return ball;
         }
